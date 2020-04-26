@@ -9,7 +9,7 @@ app.use(cors())
 app.use(express.static('build'))
 app.use(express.json())
 
-morgan.token('body', (req, res) => JSON.stringify(req.body))
+morgan.token('body', req => JSON.stringify(req.body))
 
 app.use(morgan(':method :url :status :res[content-length] - :response-time ms :body'))
 
@@ -49,11 +49,11 @@ app.get('/api/persons/:id', (req, res, next) => {
 
 app.delete('/api/persons/:id', (req, res, next) => {
   Person.findByIdAndRemove(req.params.id)
-    .then(result => res.status(204).end())
+    .then(res => res.status(204).end())
     .catch(error => next(error))
 })
 
-app.get('/info', (req, res, error) => {
+app.get('/info', (req, res, next) => {
   Person.countDocuments()
     .then(count => {
       res.send(`<p>Phonebook has info for ${count} people</p>

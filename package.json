@@ -7,11 +7,13 @@
     "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon index.js",
-    "build:ui": "rm -rf build && cd ../phonebook && npm run build && cp -r build ../phonebook-backend/"
+    "build:ui": "rm -rf build && cd ../phonebook && npm run build && cp -r build ../phonebook-backend/",
+    "lint": "eslint ."
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "eslint": "^6.8.0",
     "nodemon": "^2.0.3"
   },
   "dependencies": {
